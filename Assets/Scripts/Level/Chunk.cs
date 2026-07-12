@@ -16,6 +16,8 @@ public class Chunk : MonoBehaviour
   private Vector2 tStone = new Vector2(3, 1);
   private Vector2 tGrass = new Vector2(1, 1);
   private Vector2 tDirt = new Vector2(1, 0);
+  private Vector2 tTree = new Vector2(1, 2);
+  private Vector2 tTreeTB = new Vector2(1, 3);
   private Vector2 tGrassTop = new Vector2(2, 1);
   private Vector2 tWater = new Vector2(0, 1);
 
@@ -48,21 +50,10 @@ public class Chunk : MonoBehaviour
     col = GetComponent<MeshCollider>();
 
     GenerateMesh();
-
-
   }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
-
 
   public void GenerateMesh()
   {
-
     for (int x = 0; x < chunkSize; x++)
     {
       for (int y = 0; y < chunkSize; y++)
@@ -76,41 +67,41 @@ public class Chunk : MonoBehaviour
             if (Block(x, y + 1, z) == 0)
             {
               //Block above is air
-              CubeTop(x, y, z, Block(x, y, z));
+              CubeTop(x, y, z);
             }
 
             if (Block(x, y - 1, z) == 0)
             {
               //Block below is air
-              CubeBot(x, y, z, Block(x, y, z));
+              CubeBot(x, y, z);
 
             }
 
             if (Block(x + 1, y, z) == 0)
             {
               //Block east is air
-              CubeEast(x, y, z, Block(x, y, z));
+              CubeEast(x, y, z);
 
             }
 
             if (Block(x - 1, y, z) == 0)
             {
               //Block west is air
-              CubeWest(x, y, z, Block(x, y, z));
+              CubeWest(x, y, z);
 
             }
 
             if (Block(x, y, z + 1) == 0)
             {
               //Block north is air
-              CubeNorth(x, y, z, Block(x, y, z));
+              CubeNorth(x, y, z);
 
             }
 
             if (Block(x, y, z - 1) == 0)
             {
               //Block south is air
-              CubeSouth(x, y, z, Block(x, y, z));
+              CubeSouth(x, y, z);
 
             }
 
@@ -128,7 +119,7 @@ public class Chunk : MonoBehaviour
     return world.Block(x + chunkX, y + chunkY, z + chunkZ);
   }
 
-  void CubeTop(int x, int y, int z, byte block)
+  void CubeTop(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x, y, z + 1));
@@ -146,12 +137,16 @@ public class Chunk : MonoBehaviour
     {
       texturePos = tGrassTop;
     }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTreeTB;
+    }
 
     Cube(texturePos);
 
   }
 
-  void CubeNorth(int x, int y, int z, byte block)
+  void CubeNorth(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x + 1, y - 1, z + 1));
@@ -169,12 +164,16 @@ public class Chunk : MonoBehaviour
     {
       texturePos = tGrass;
     }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTree;
+    }
 
     Cube(texturePos);
 
   }
 
-  void CubeEast(int x, int y, int z, byte block)
+  void CubeEast(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x + 1, y - 1, z));
@@ -192,12 +191,16 @@ public class Chunk : MonoBehaviour
     {
       texturePos = tGrass;
     }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTree;
+    }
 
     Cube(texturePos);
 
   }
 
-  void CubeSouth(int x, int y, int z, byte block)
+  void CubeSouth(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x, y - 1, z));
@@ -215,12 +218,16 @@ public class Chunk : MonoBehaviour
     {
       texturePos = tGrass;
     }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTree;
+    }
 
     Cube(texturePos);
 
   }
 
-  void CubeWest(int x, int y, int z, byte block)
+  void CubeWest(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x, y - 1, z + 1));
@@ -238,12 +245,16 @@ public class Chunk : MonoBehaviour
     {
       texturePos = tGrass;
     }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTree;
+    }
 
     Cube(texturePos);
 
   }
 
-  void CubeBot(int x, int y, int z, byte block)
+  void CubeBot(int x, int y, int z)
   {
 
     newVertices.Add(new Vector3(x, y - 1, z));
@@ -260,6 +271,10 @@ public class Chunk : MonoBehaviour
     else if (Block(x, y, z) == 2)
     {
       texturePos = tGrass;
+    }
+    else if (Block(x, y, z) == 3)
+    {
+      texturePos = tTreeTB;
     }
 
     Cube(texturePos);
