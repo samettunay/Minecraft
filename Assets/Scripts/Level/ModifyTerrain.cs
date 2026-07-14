@@ -21,7 +21,7 @@ public class ModifyTerrain : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButtonDown(1)){
-			AddBlockCenter(5,255);
+			AddBlockCenter(5,6);
 			
 		}
 		

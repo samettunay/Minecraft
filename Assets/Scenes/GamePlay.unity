@@ -304,6 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::World
   chunk: {fileID: 100000, guid: 10cde20b37c9919488acd48b48aadebc, type: 3}
   chunkSize: 16
+  waterChunk: {fileID: 3436091405632616946, guid: 3ce8cb62e38fb464ea96e1638865874f, type: 3}
+  waterChunkSize: 16
   worldX: 512
   worldY: 32
   worldZ: 512
